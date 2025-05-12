@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, { useState } from 'react';
 import { TouchableOpacity } from 'react-native'; // Asegurate de importar esto también
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 // ...dentro del return de HomeScreen
 
@@ -12,7 +13,7 @@ import { TouchableOpacity } from 'react-native'; // Asegurate de importar esto t
 
 function HomeScreen({ email, password, setEmail, setPassword }) {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       
       <TextInput
         style={styles.input}
@@ -27,7 +28,10 @@ function HomeScreen({ email, password, setEmail, setPassword }) {
         value={password}
         secureTextEntry={true}
       />
-    </View>
+                    <TouchableOpacity style={styles.botonIngresar} onPress={() => alert('Ingresando...')}>
+              <Text style={styles.botonTexto}>Ingresar</Text>
+            </TouchableOpacity>
+    </SafeAreaView>
   );
 }
 
@@ -53,6 +57,7 @@ export default function App() {
               headerTitleStyle: {
                 fontWeight: 'bold',
                 fontSize: 22,
+                
               },
             }}
           >
@@ -64,14 +69,13 @@ export default function App() {
                 setEmail={setEmail}
                 setPassword={setPassword}
               />
+
             )}
           </Stack.Screen>
         </Stack.Navigator>
         <StatusBar style="light" />
       </NavigationContainer>
-      <TouchableOpacity style={styles.botonIngresar} onPress={() => alert('Ingresando...')}>
-  <Text style={styles.botonTexto}>Ingresar</Text>
-</TouchableOpacity>
+
     </View>
   );
 }
@@ -83,6 +87,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20,
+    
   },
   title: {
     fontSize: 26,
